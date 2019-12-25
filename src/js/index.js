@@ -1,19 +1,7 @@
 // Global app controller
 
-import axios from 'axios'
+import Search from './models/Search'
 
-async function getResults(query) {
-    try {
-        const res = await axios(`https://forkify-api.herokuapp.com/api/search?&q=${query}`)
-        const recipes = res.data.recipes
-        console.log(recipes)
-    }
-    catch (error) {
-        alert(error)
-    }
-}
-getResults('lobster')
-
-
-// const res = await axios(`https://forkify-api.herokuapp.com/api/search?&q=${this.query}`);
-// const res = await axios(`https://forkify-api.herokuapp.com/api/get?rId=${this.id}`);
+const search = new Search('pizza')
+console.log(search)
+search.getResults()
