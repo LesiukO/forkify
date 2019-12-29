@@ -19,6 +19,7 @@ const state = {}
 const controlSearch = async () => {
     // 1. Get query from view
     const query = searchView.getInput()
+    // const query = 'pizza' // DELETE
 
     if (query) {
         // 2. New search object and add to state
@@ -74,8 +75,9 @@ const controlRecipe = async () => {
         state.recipe = new Recipe(id)
 
         try{
-            // Get recipe data
+            // Get recipe data and parse ingredients
             await state.recipe.getRecipe()
+            state.recipe.parseIngredients()
 
             // Calculate servings and time
             state.recipe.calcTime()
@@ -85,6 +87,7 @@ const controlRecipe = async () => {
             console.log(state.recipe)
         } catch (err) {
             alert('Error processing recipe')
+            console.log(err)
         }
     }
 }
